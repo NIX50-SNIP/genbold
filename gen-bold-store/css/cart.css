@@ -1,0 +1,775 @@
+/**
+ * Gen Bold - Cart Drawer & COD Checkout Styles
+ * Strictly implements:
+ * 1. Cash on Delivery (COD) only checkout.
+ * 2. Orders >= ₹299 have Free Delivery.
+ * 3. Orders < ₹299 charge ₹49 INR delivery.
+ * 4. Coupon codes & discreet packaging guarantees.
+ */
+
+/* ============================================================
+   CART FULLSCREEN SUITE & COD CHECKOUT
+   ============================================================ */
+.cart-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(5px);
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.cart-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Fullscreen Cart Window */
+.cart-drawer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  background: #f8fafc;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+.cart-drawer.active {
+  transform: translateY(0);
+}
+
+/* Cart Sticky Top Header */
+.cart-drawer-header {
+  position: sticky;
+  top: 0;
+  padding: 1rem 2.5rem;
+  background: #0b1329;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.cart-back-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 0.5rem 1.15rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.cart-back-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: translateX(-3px);
+}
+
+.cart-drawer-header h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  font-family: var(--font-heading);
+}
+
+.cart-close-btn {
+  background: #ef4444;
+  border: none;
+  color: #ffffff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.cart-close-btn:hover {
+  background: #dc2626;
+  transform: scale(1.1);
+}
+
+/* Cart Fullscreen Workspace Container */
+.cart-fullscreen-container {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cart-fullscreen-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+/* Left Shopping Bag Items Section */
+.cart-items-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Free COD Threshold Progress Bar */
+.cod-progress-box {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.cod-progress-text {
+  font-size: 0.95rem;
+  color: #9a3412;
+  margin-bottom: 0.65rem;
+  line-height: 1.4;
+}
+
+.cod-progress-bar-wrap {
+  width: 100%;
+  height: 10px;
+  background: #ffedd5;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.cod-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f97316, var(--primary));
+  border-radius: var(--radius-full);
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* Cart Items Card */
+.cart-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.cart-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--border-light);
+  margin-bottom: 1.25rem;
+}
+
+.cart-card-header h4 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--secondary);
+}
+
+.cart-drawer-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Fullscreen Cart Item Row */
+.cart-item-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 140px auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.cart-item-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.cart-item-thumb {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  background: #f1f5f9;
+  border: 1px solid var(--border-light);
+}
+
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cart-item-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.cart-item-meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cart-item-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.selling-bold {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.15rem;
+  font-family: var(--font-heading);
+}
+
+.mrp-old {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+/* Stepper in Fullscreen Cart */
+.cart-item-qty-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.qty-stepper button {
+  background: #f8fafc;
+  border: none;
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.qty-stepper button:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.qty-stepper span {
+  padding: 0 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.btn-remove-item {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: var(--transition);
+}
+
+.btn-remove-item:hover {
+  color: #b91c1c;
+  text-decoration: underline;
+}
+
+/* Right Sticky Summary Column */
+.cart-summary-column {
+  position: sticky;
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cart-summary-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.cart-summary-card h4 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--secondary);
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-light);
+  margin-bottom: 1.25rem;
+  font-family: var(--font-heading);
+}
+
+.cart-drawer-footer {
+  padding: 0;
+  background: transparent;
+  border-top: none;
+}
+
+@media (max-width: 992px) {
+  .cart-fullscreen-grid {
+    grid-template-columns: 1fr;
+  }
+  .cart-summary-column {
+    position: static;
+  }
+  .cart-item-row {
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+  }
+  .cart-item-qty-row {
+    grid-column: span 2;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+}
+
+.cart-item-meta {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.cart-item-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.selling-bold {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 0.95rem;
+}
+
+.mrp-old {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.cart-item-qty-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.qty-stepper button {
+  background: #f8fafc;
+  border: none;
+  width: 26px;
+  height: 26px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.qty-stepper button:hover {
+  background: #e2e8f0;
+}
+
+.qty-stepper span {
+  padding: 0 0.55rem;
+  font-size: 0.825rem;
+  font-weight: 700;
+}
+
+.btn-remove-item {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-remove-item:hover {
+  color: var(--danger);
+}
+
+/* ============================================================
+   COUPON & DISCREET PACKAGING FOOTER IN CART
+   ============================================================ */
+.cart-drawer-footer {
+  padding: 1.25rem 1.5rem;
+  background: #f8fafc;
+  border-top: 1px solid var(--border-light);
+}
+
+.coupon-box-wrap {
+  margin-bottom: 1rem;
+}
+
+.coupon-input-group {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.coupon-input {
+  flex: 1;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-size: 0.825rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  outline: none;
+}
+
+.coupon-input:focus {
+  border-color: var(--primary);
+}
+
+.coupon-chips-list {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.coupon-chip {
+  background: #f1f5f9;
+  border: 1px dashed #cbd5e1;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.725rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #334155;
+  transition: var(--transition);
+}
+
+.coupon-chip:hover {
+  background: #ffedd5;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.cart-discreet-badge {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+/* Price Breakdown Summary */
+.cart-price-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}
+
+.summary-row.total-row {
+  border-top: 2px solid var(--border-light);
+  padding-top: 0.65rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.summary-row.total-row .total-amount {
+  color: var(--primary);
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+}
+
+.btn-remove-coupon {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+/* ============================================================
+   COD CHECKOUT MODAL & FORMS
+   ============================================================ */
+.checkout-modal-container {
+  max-width: 680px;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.checkout-header {
+  background: var(--secondary);
+  color: #ffffff;
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.checkout-body {
+  padding: 1.75rem;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.checkout-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group-full {
+  grid-column: span 2;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: var(--text-secondary);
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* COD Payment Box */
+.cod-only-payment-card {
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin: 1.25rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.cod-radio-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--success);
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 2px var(--success);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.cod-payment-info h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #166534;
+  margin-bottom: 0.2rem;
+}
+
+.cod-payment-info p {
+  font-size: 0.785rem;
+  color: #14532d;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   ORDER SUCCESS MODAL
+   ============================================================ */
+.order-success-card {
+  text-align: center;
+  padding: 2.5rem 2rem;
+}
+
+.success-check-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #16a34a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin: 0 auto 1.25rem;
+  box-shadow: 0 4px 15px rgba(22, 163, 74, 0.25);
+}
+
+.success-order-id-badge {
+  display: inline-block;
+  background: #ffedd5;
+  color: #c2410c;
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-sm);
+  margin: 0.75rem 0 1.25rem;
+}
+
+.success-details-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  text-align: left;
+  margin: 1.25rem 0;
+  font-size: 0.875rem;
+}
+
+/* ============================================================
+   ORDER TRACKING TIMELINE
+   ============================================================ */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.timeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+}
+
+.timeline-step::before {
+  content: "";
+  position: absolute;
+  top: 26px;
+  left: 14px;
+  width: 2px;
+  height: calc(100% + 0.25rem);
+  background: #e2e8f0;
+}
+
+.timeline-step:last-child::before {
+  display: none;
+}
+
+.step-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.timeline-step.done .step-dot {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.timeline-step.done::before {
+  background: #86efac;
+}
+
+.timeline-step.active .step-dot {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 0 10px var(--primary-glow);
+}

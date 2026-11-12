@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gen Bold | Bold Lifestyle, Hobbygrade Toys & Intimate Wellness</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Full Modular Stylesheet Structure -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/store.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- ========================================================
+       TOP-LEFT 3-DOTS ADMIN PANEL LAUNCHER (Password: 1082)
+       ======================================================== -->
+  <button id="admin-launcher-btn" class="admin-launcher-btn" title="Admin Panel (Password: 1082)" aria-label="Open Store Admin Panel">
+    ⋮
+  </button>
+
+  <!-- ========================================================
+       HEADER TOP BAR
+       ======================================================== -->
+  <header class="site-header">
+    <div class="header-top-bar">
+      <div class="container d-flex justify-between align-center flex-wrap">
+        <div class="top-bar-links">
+          <a href="mailto:support@genbold.in">✉ support@genbold.in</a>
+          <a href="tel:+918001234567">📞 +91 (800) 123-4567</a>
+          <span class="text-xs text-muted">| ⚡ Free COD on orders ₹299+</span>
+        </div>
+        <div class="top-bar-actions">
+          <span>₹ INR (₹)</span>
+          <span>🇮🇳 English</span>
+          <button id="header-track-order-btn" class="top-bar-btn">
+            📍 Track Order
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN HEADER: LOGO, SEARCH, USER ACTIONS -->
+     <!-- Login / User Profile Area -->
+<div id="auth-container">
+    <button id="login-btn" onclick="loginWithGoogle()">Sign in with Google</button>
+    
+    <div id="user-profile" style="display: none;">
+        <img id="user-avatar" src="" alt="Profile" width="30" style="border-radius: 50%; vertical-align: middle;">
+        <span id="user-name"></span>
+        <button onclick="logout()">Logout</button>
+    </div>
+</div>
+    <div class="header-main">
+      <div class="container">
+        <div class="header-main-grid">
+          
+          <!-- Brand Logo -->
+          <a href="#" class="brand-logo" onclick="window.genBoldApp.resetFilters();">
+            <div class="brand-icon">⚡</div>
+            <div class="brand-text-wrap">
+              <span class="brand-title">Gen<span>Bold</span></span>
+              <span class="brand-subtitle">Hobby • Tech • Wellness</span>
+            </div>
+          </a>
+
+          <!-- Live Search with Category Dropdown -->
+          <div class="header-search-wrap">
+            <select id="header-search-category" class="search-category-select">
+              <option value="all">All Categories</option>
+            </select>
+            <input type="text" id="header-search-input" class="search-input" placeholder="Search RC cars, drones, vibrators, lubes, headphones...">
+            <button id="header-search-btn" class="search-submit-btn" aria-label="Search">
+              🔍
+            </button>
+          </div>
+
+          <!-- User Actions (Account, Wishlist, Cart) -->
+          <div class="header-actions">
+            <!-- Account -->
+            <button class="action-item" onclick="window.genBoldAdmin.handleLauncherClick();" title="Store Manager / Account">
+              <div class="action-icon-wrap">👤</div>
+              <div class="action-text">
+                <span class="action-sub">Admin / Account</span>
+                <span class="action-label">Sign In</span>
+              </div>
+            </button>
+
+            <!-- Wishlist -->
+            <button id="header-wishlist-btn" class="action-item" title="View Wishlist">
+              <div class="action-icon-wrap">
+                🤍
+                <span id="header-wishlist-count" class="action-badge">0</span>
+              </div>
+              <div class="action-text">
+                <span class="action-sub">Saved</span>
+                <span class="action-label">Wishlist</span>
+              </div>
+            </button>
+
+            <!-- Cart with Price -->
+            <button id="header-cart-btn" class="action-item" title="View Cart">
+              <div class="action-icon-wrap">
+                🛒
+                <span class="action-badge header-cart-count">0</span>
+              </div>
+              <div class="action-text">
+                <span class="action-sub">Cart</span>
+                <span class="action-label header-cart-total">₹0.00</span>
+              </div>
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVIGATION BAR & MEGA MENU -->
+    <nav class="header-nav">
+      <div class="container nav-container">
+        <div class="nav-links-left">
+          
+          <!-- Categories Dropdown Trigger with Mega-Menu -->
+          <div class="categories-menu-trigger">
+            <button class="categories-btn">
+              ☰ Categories ▾
+            </button>
+            <div id="nav-mega-menu" class="mega-menu">
+              <!-- Dynamically populated category tree columns -->
+            </div>
+          </div>
+
+          <a href="#" class="nav-item active" onclick="window.genBoldApp.resetFilters();">Home</a>
+          <a href="#catalog-section" class="nav-item" onclick="window.genBoldApp.selectCategory('all');">Store</a>
+          <a href="#catalog-section" class="nav-item" onclick="window.genBoldApp.selectCategory('hobbygrade-toys');">Hobbygrade Toys</a>
+          <a href="#catalog-section" class="nav-item" onclick="window.genBoldApp.selectCategory('sexual-toys');">Sexual Toys</a>
+          <a href="#catalog-section" class="nav-item" onclick="window.genBoldApp.selectCategory('sexual-products');">Intimate Wellness</a>
+          <a href="#catalog-section" class="nav-item" onclick="window.genBoldApp.selectCategory('tech-audio');">
+            Deals <span class="nav-tag-hot">HOT</span>
+          </a>
+          <a href="#footer-section" class="nav-item">Support</a>
+        </div>
+
+        <!-- Flash Sale Nav CTA -->
+        <a href="#flash-sale-section" class="nav-flash-cta">
+          ⚡ FLASH SALE
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ========================================================
+         HERO SECTION (MATCHING THE REFERENCE THEME IMAGE)
+         ======================================================== -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        
+        <!-- Left Hero Content -->
+        <div class="hero-content">
+          <div class="hero-badge-pill">
+            ★ NEW · PREMIUM AUDIO & LIFESTYLE
+          </div>
+          <h1 class="hero-title">
+            SOUND THAT <span>MOVES YOU</span>
+          </h1>
+          <p class="hero-desc">
+            Experience immersive sound with deep bass, crystal clear calls, and all-day comfort. High-performance RC hobby toys, tech audio, and intimate wellness gear engineered for your bold lifestyle.
+          </p>
+
+          <!-- Feature Pills matching the theme image -->
+          <div class="hero-features-row">
+            <div class="hero-feature-item">
+              <div class="feature-icon-circle">📶</div>
+              <div class="feature-meta">
+                <span class="feature-label">ANC</span>
+                <span class="feature-sub">Noise Cancelling</span>
+              </div>
+            </div>
+            <div class="hero-feature-item">
+              <div class="feature-icon-circle">🔋</div>
+              <div class="feature-meta">
+                <span class="feature-label">40H</span>
+                <span class="feature-sub">Battery Life</span>
+              </div>
+            </div>
+            <div class="hero-feature-item">
+              <div class="feature-icon-circle">⚡</div>
+              <div class="feature-meta">
+                <span class="feature-label">Bluetooth 5.3</span>
+                <span class="feature-sub">Ultra Stable</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="#catalog-section" class="hero-cta-btn" onclick="window.genBoldApp.selectCategory('tech-audio');">
+            SHOP NOW →
+          </a>
+        </div>
+
+        <!-- Right Hero Visual with Orange Circular Accent -->
+        <div class="hero-visual-wrap">
+          <div class="hero-circular-backdrop"></div>
+          <img 
+            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" 
+            alt="Gen Bold Premium Headphone" 
+            class="hero-product-img"
+          >
+          <div class="hero-discount-badge">
+            <span class="badge-val">-30%</span>
+            <span class="badge-lbl">OFF<br>LAUNCH</span>
+          </div>
+          <div class="hero-script-tag">
+            Feel the Difference
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         VALUE PROPOSITION STRIP (4 TRUST BADGES)
+         ======================================================== -->
+    <section class="value-props-section">
+      <div class="container value-props-grid">
+        <div class="value-prop-card">
+          <div class="prop-icon">🚚</div>
+          <div class="prop-info">
+            <h5>Free COD Delivery</h5>
+            <p>On all orders over ₹299 (or ₹49)</p>
+          </div>
+        </div>
+        <div class="value-prop-card">
+          <div class="prop-icon">📦</div>
+          <div class="prop-info">
+            <h5>100% Discreet Packaging</h5>
+            <p>Plain box with zero product markings</p>
+          </div>
+        </div>
+        <div class="value-prop-card">
+          <div class="prop-icon">💵</div>
+          <div class="prop-info">
+            <h5>Cash on Delivery (COD)</h5>
+            <p>Pay when courier delivers to door</p>
+          </div>
+        </div>
+        <div class="value-prop-card">
+          <div class="prop-icon">🛡️</div>
+          <div class="prop-info">
+            <h5>24/7 Dedicated Support</h5>
+            <p>WhatsApp & call help available</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SHOP BY CATEGORY (VISUAL GRID CARDS)
+         ======================================================== -->
+    <section class="container py-5">
+      <div class="section-header">
+        <h2 class="section-title">Shop by Category</h2>
+        <a href="#catalog-section" class="section-link" onclick="window.genBoldApp.selectCategory('all');">
+          View All Categories →
+        </a>
+      </div>
+      <div id="shop-by-category-grid" class="category-grid">
+        <!-- Dynamically rendered category cards -->
+      </div>
+    </section>
+
+    <!-- ========================================================
+         FLASH SALE COUNTDOWN BANNER (MATCHING REFERENCE IMAGE)
+         ======================================================== -->
+    <section id="flash-sale-section" class="container">
+      <div class="flash-sale-banner">
+        
+        <div class="flash-left">
+          <div class="flash-icon">⚡</div>
+          <div class="flash-text">
+            <h3>FLASH SALE UP TO 50% OFF</h3>
+            <p>Limited Time Deals on Top Tech, Hobbygrade Toys & Wellness!</p>
+          </div>
+        </div>
+
+        <!-- Realtime Countdown Timer -->
+        <div class="countdown-wrap">
+          <div class="countdown-box">
+            <div id="flash-days" class="count-num">02</div>
+            <div class="count-label">Days</div>
+          </div>
+          <div class="countdown-box">
+            <div id="flash-hours" class="count-num">14</div>
+            <div class="count-label">Hours</div>
+          </div>
+          <div class="countdown-box">
+            <div id="flash-mins" class="count-num">36</div>
+            <div class="count-label">Minutes</div>
+          </div>
+          <div class="countdown-box">
+            <div id="flash-secs" class="count-num">27</div>
+            <div class="count-label">Seconds</div>
+          </div>
+        </div>
+
+        <a href="#catalog-section" class="flash-btn" onclick="window.genBoldApp.resetFilters();">
+          View All Deals →
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         FEATURED PRODUCTS & CATEGORY TREE CATALOG
+         ======================================================== -->
+    <section id="catalog-section" class="container catalog-section">
+      
+      <div class="catalog-header-bar">
+        <h2 class="section-title">Featured Products</h2>
+        <!-- Filter Tabs -->
+        <div id="catalog-filter-tabs" class="filter-tabs-bar">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Controls Toolbar: Gender Filters, Sort, Count -->
+      <div class="catalog-controls">
+        <div class="gender-filter-group">
+          <span class="text-xs text-muted font-bold">GENDER:</span>
+          <button class="gender-filter-btn active" data-gender="all">All</button>
+          <button class="gender-filter-btn" data-gender="Unisex">Unisex</button>
+          <button class="gender-filter-btn" data-gender="Men">Men</button>
+          <button class="gender-filter-btn" data-gender="Women">Women</button>
+          <button class="gender-filter-btn" data-gender="Couples">Couples</button>
+        </div>
+
+        <div class="flex-1 text-right">
+          <span id="catalog-results-count" class="text-xs text-muted mr-3">Showing products</span>
+          <select id="catalog-sort-select" class="catalog-sort-select">
+            <option value="featured">Featured First</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="discount">Biggest Discount %</option>
+            <option value="rating">Top Customer Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="products-catalog-grid" class="products-grid">
+        <!-- Rendered via JS -->
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ========================================================
+       SITE FOOTER (MATCHING REFERENCE IMAGE)
+       ======================================================== -->
+  <footer id="footer-section" class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Brand Info -->
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="brand-icon">⚡</div>
+            <div class="brand-text-wrap">
+              <span class="brand-title">Gen<span>Bold</span></span>
+              <span class="brand-subtitle">Lifestyle • Hobby • Wellness</span>
+            </div>
+          </div>
+          <p>
+            Your ultimate destination for high-octane hobbygrade toys, cutting-edge audio tech, and 100% body-safe intimate wellness products. Premium quality, guaranteed discreet Cash on Delivery, and honest prices.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon-btn" title="Facebook">📘</a>
+            <a href="#" class="social-icon-btn" title="Instagram">📸</a>
+            <a href="#" class="social-icon-btn" title="YouTube">📺</a>
+            <a href="#" class="social-icon-btn" title="Twitter">🐦</a>
+            <a href="#" class="social-icon-btn" title="LinkedIn">💼</a>
+          </div>
+        </div>
+
+        <!-- Shop Links -->
+        <div class="footer-col">
+          <h4>Shop Catalog</h4>
+          <ul class="footer-links">
+            <li><a href="#catalog-section" onclick="window.genBoldApp.selectCategory('all');">All Products</a></li>
+            <li><a href="#catalog-section" onclick="window.genBoldApp.selectCategory('hobbygrade-toys');">Hobbygrade Toys</a></li>
+            <li><a href="#catalog-section" onclick="window.genBoldApp.selectCategory('sexual-toys');">Sexual Toys & Tech</a></li>
+            <li><a href="#catalog-section" onclick="window.genBoldApp.selectCategory('sexual-products');">Intimate Wellness & Lubes</a></li>
+            <li><a href="#catalog-section" onclick="window.genBoldApp.selectCategory('tech-audio');">Audio & Lifestyle Gadgets</a></li>
+            <li><a href="#flash-sale-section">Flash Deals & Discounts</a></li>
+          </ul>
+        </div>
+
+        <!-- Support & Policies -->
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="document.getElementById('track-order-modal').classList.add('active');">Track COD Order</a></li>
+            <li><a href="#">100% Discreet Packaging Policy</a></li>
+            <li><a href="#">Cash on Delivery (COD) Rules</a></li>
+            <li><a href="#">Shipping & Delivery Timeline</a></li>
+            <li><a href="#">Easy Returns & Replacement</a></li>
+            <li><a href="#">Contact Us & WhatsApp Help</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div class="footer-col">
+          <h4>Stay Bold</h4>
+          <p class="text-sm">Get secret flash sale alerts, new toy drops, and exclusive coupon codes straight to your inbox.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); window.showToast('Subscribed! Welcome coupon BOLD50 sent to your email.', 'success'); this.reset();">
+            <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+          </form>
+          <div class="text-xs text-muted mt-2">
+            🔒 We respect your privacy. No spam ever.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          © 2026 Gen Bold. All rights reserved. Registered Indian eCommerce Trademark.
+        </div>
+        <div class="payment-badges">
+          <span class="pay-badge" style="background:#ea580c;color:#fff;">💵 CASH ON DELIVERY (COD)</span>
+          <span class="pay-badge">UPI</span>
+          <span class="pay-badge">VISA</span>
+          <span class="pay-badge">Mastercard</span>
+          <span class="pay-badge">RuPay</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       MODAL 1: ADMIN PASSWORD AUTHENTICATION (Password: 1082)
+       ======================================================== -->
+  <div id="admin-auth-modal" class="modal-overlay">
+    <div class="admin-auth-box">
+      <button id="close-admin-auth-modal" class="modal-close-btn" aria-label="Close">✕</button>
+      <div class="auth-lock-icon">🔒</div>
+      <h3>Store Admin Access</h3>
+      <p>Enter the master security password to access the Gen Bold control suite.</p>
+      
+      <form id="admin-login-form">
+        <div class="password-input-wrap">
+          <input type="password" id="admin-pwd-input" placeholder="••••" maxlength="8" autocomplete="off" required>
+        </div>
+        <div id="admin-auth-error" class="auth-error-msg"></div>
+        <button type="submit" class="btn btn-primary btn-block">Unlock Admin Panel</button>
+      </form>
+
+      <div class="text-xs text-muted mt-3">
+        Default Security Code: <strong>1082</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 2: ADMIN PANEL FULL OVERLAY
+       ======================================================== -->
+  <div id="admin-panel-overlay" class="admin-panel-overlay">
+    <!-- Admin Top Header -->
+    <div class="admin-top-header">
+      <div class="admin-header-title">
+        <span style="font-size:1.4rem;">⚡</span>
+        <strong>Gen Bold Administration Suite</strong>
+        <span class="admin-badge-role">Store Manager</span>
+      </div>
+      <div class="admin-header-actions">
+        <button id="admin-logout-btn" class="btn btn-sm btn-outline" style="color:#ffffff;border-color:rgba(255,255,255,0.2);">🔒 Lock / Logout</button>
+        <button id="close-admin-panel" class="btn btn-sm btn-primary">✕ Return to Store</button>
+      </div>
+    </div>
+
+    <!-- Admin Workspace -->
+    <div class="admin-workspace">
+      <!-- Admin Sidebar Navigation -->
+      <aside class="admin-sidebar">
+        <button class="admin-nav-btn active" data-tab="products">
+          📦 Product Catalog & CRUD
+        </button>
+        <button class="admin-nav-btn" data-tab="categories">
+          🌳 Category Tree System
+        </button>
+        <button class="admin-nav-btn" data-tab="coupons">
+          🎟️ Discount Coupons
+        </button>
+        <button class="admin-nav-btn" data-tab="orders">
+          🚚 COD Customer Orders
+        </button>
+        <button class="admin-nav-btn" data-tab="settings">
+          ⚙️ COD Rules & Backup
+        </button>
+      </aside>
+
+      <!-- Admin Content Area -->
+      <main class="admin-content-area">
+        
+        <!-- Live KPI Stats Grid -->
+        <div class="admin-stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Total Products</div>
+            <div id="admin-stat-products" class="stat-value">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Category Trees</div>
+            <div id="admin-stat-categories" class="stat-value">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Active Coupons</div>
+            <div id="admin-stat-coupons" class="stat-value">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total COD Orders</div>
+            <div id="admin-stat-orders" class="stat-value">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">COD Order Value</div>
+            <div id="admin-stat-revenue" class="stat-value text-primary">₹0</div>
+          </div>
+        </div>
+
+        <!-- TAB 1: PRODUCT CATALOG & CRUD -->
+        <section id="admin-tab-products" class="admin-tab-pane active">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Product Management & Pricing Control</h3>
+              <div class="d-flex gap-2">
+                <select id="admin-filter-category" class="form-control" style="width:180px;">
+                  <option value="all">All Categories</option>
+                </select>
+                <button class="btn btn-primary" onclick="window.genBoldAdmin.openAddProductModal()">
+                  + Add New Product
+                </button>
+              </div>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Product & Variants</th>
+                    <th>Category</th>
+                    <th>Price (MRP & Selling)</th>
+                    <th>Discount</th>
+                    <th>Stock Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-products-table-body">
+                  <!-- Populated by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: CATEGORY TREE SYSTEM -->
+        <section id="admin-tab-categories" class="admin-tab-pane">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <h3>Category & Tree Hierarchy System</h3>
+                <p class="text-xs text-muted">Manage main categories (Hobbygrade Toys, Sexual Toys, Sexual Products & Wellness, Tech) and nested subcategories.</p>
+              </div>
+            </div>
+            <div style="padding:1.5rem;">
+              
+              <!-- Category Tree Visualizer -->
+              <div id="admin-category-tree-display" class="category-tree-display mb-4">
+                <!-- Rendered dynamically -->
+              </div>
+
+              <!-- Add Category & Subcategory Forms Grid -->
+              <div class="d-flex gap-4 flex-wrap">
+                <!-- Add Category Form -->
+                <div class="flex-1" style="min-width:300px;background:#ffffff;border:1px solid #e2e8f0;padding:1.25rem;border-radius:8px;">
+                  <h4 class="mb-3 font-bold">Add Main Category</h4>
+                  <form id="admin-add-category-form">
+                    <div class="mb-2">
+                      <label class="form-label">Category Name</label>
+                      <input type="text" id="cat-form-name" class="form-control" placeholder="e.g. Extreme Collectibles" required>
+                    </div>
+                    <div class="mb-2">
+                      <label class="form-label">Category Icon / Emoji</label>
+                      <input type="text" id="cat-form-icon" class="form-control" placeholder="e.g. 🚀" value="📦">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Short Description</label>
+                      <input type="text" id="cat-form-desc" class="form-control" placeholder="Brief catalog summary">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">+ Create Category</button>
+                  </form>
+                </div>
+
+                <!-- Add Subcategory Form -->
+                <div class="flex-1" style="min-width:300px;background:#ffffff;border:1px solid #e2e8f0;padding:1.25rem;border-radius:8px;">
+                  <h4 class="mb-3 font-bold">Add Branch / Subcategory</h4>
+                  <form id="admin-add-subcategory-form">
+                    <div class="mb-2">
+                      <label class="form-label">Parent Category</label>
+                      <select id="subcat-form-parent" class="form-control" required></select>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Subcategory Name</label>
+                      <input type="text" id="subcat-form-name" class="form-control" placeholder="e.g. FPV Racing Drones" required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-sm">+ Add Subcategory</button>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 3: DISCOUNT COUPONS -->
+        <section id="admin-tab-coupons" class="admin-tab-pane">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Discount Coupons Engine</h3>
+            </div>
+            <div style="padding:1.5rem;">
+              <table class="admin-table mb-4">
+                <thead>
+                  <tr>
+                    <th>Coupon Code</th>
+                    <th>Discount</th>
+                    <th>Min Order</th>
+                    <th>Terms / Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-coupons-table-body">
+                  <!-- Populated by admin.js -->
+                </tbody>
+              </table>
+
+              <!-- Create Coupon Form -->
+              <div style="background:#ffffff;border:1px solid #e2e8f0;padding:1.25rem;border-radius:8px;max-width:600px;">
+                <h4 class="font-bold mb-3">+ Create New Discount Coupon</h4>
+                <form id="admin-add-coupon-form" class="checkout-form-grid">
+                  <div>
+                    <label class="form-label">Coupon Code (Uppercase)</label>
+                    <input type="text" id="coupon-form-code" class="form-control" placeholder="e.g. FLASH25" required>
+                  </div>
+                  <div>
+                    <label class="form-label">Discount Type</label>
+                    <select id="coupon-form-type" class="form-control">
+                      <option value="percent">Percentage (%) OFF</option>
+                      <option value="fixed">Fixed Amount (₹ INR) OFF</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label">Discount Value</label>
+                    <input type="number" id="coupon-form-value" class="form-control" placeholder="e.g. 25 or 100" required>
+                  </div>
+                  <div>
+                    <label class="form-label">Min Order Value (₹)</label>
+                    <input type="number" id="coupon-form-min" class="form-control" placeholder="e.g. 499" value="0">
+                  </div>
+                  <div class="form-group-full">
+                    <label class="form-label">Description / Tagline</label>
+                    <input type="text" id="coupon-form-desc" class="form-control" placeholder="e.g. 25% OFF on flash weekend sale">
+                  </div>
+                  <div class="form-group-full">
+                    <button type="submit" class="btn btn-primary">+ Save & Activate Coupon</button>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 4: COD CUSTOMER ORDERS -->
+        <section id="admin-tab-orders" class="admin-tab-pane">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <h3>Customer COD Orders</h3>
+                <p class="text-xs text-muted">All orders are Cash on Delivery (COD) with discreet packaging verification.</p>
+              </div>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Order ID & Date</th>
+                    <th>Customer & Delivery</th>
+                    <th>Items Ordered</th>
+                    <th>COD Amount</th>
+                    <th>Dispatch Status</th>
+                    <th>Packaging</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-orders-table-body">
+                  <!-- Populated by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 5: SETTINGS & BACKUP -->
+        <section id="admin-tab-settings" class="admin-tab-pane">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Store Settings, COD Rules & Catalog Backup</h3>
+            </div>
+            <div style="padding:1.5rem;">
+              
+              <form id="admin-settings-form" style="max-width:600px;" class="mb-4">
+                <div class="mb-3">
+                  <label class="form-label">Free COD Minimum Order Value (₹ INR)</label>
+                  <input type="number" id="settings-min-cod" class="form-control" value="299" required>
+                  <span class="text-xs text-muted">Orders at or above this value get FREE COD. Default is ₹299.</span>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">COD Delivery Charge for Small Orders (₹ INR)</label>
+                  <input type="number" id="settings-cod-fee" class="form-control" value="49" required>
+                  <span class="text-xs text-muted">Charged when order is below minimum threshold. Default is ₹49 INR.</span>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Support Email</label>
+                  <input type="email" id="settings-email" class="form-control" value="support@genbold.in">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Support Phone</label>
+                  <input type="text" id="settings-phone" class="form-control" value="+91 (800) 123-4567">
+                </div>
+                <button type="submit" class="btn btn-primary">Save Settings</button>
+              </form>
+
+              <hr class="my-4" style="border:none;border-top:1px solid #e2e8f0;margin:1.5rem 0;">
+
+              <!-- Backup / Export / Reset -->
+              <h4 class="font-bold mb-2">Catalog Backup & Factory Reset</h4>
+              <p class="text-xs text-muted mb-3">Export entire store state to JSON or reset all demo products and categories.</p>
+              
+              <div class="d-flex gap-3 flex-wrap">
+                <button id="admin-export-json-btn" class="btn btn-outline">
+                  📥 Export Store Data (JSON)
+                </button>
+                <label class="btn btn-outline" style="cursor:pointer;margin:0;">
+                  📤 Import Store Data (JSON)
+                  <input type="file" id="admin-import-json-input" accept=".json" style="display:none;">
+                </label>
+                <button id="admin-reset-demo-btn" class="btn btn-danger-outline">
+                  🔄 Reset to Factory Demo Products
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 3: ADD / EDIT PRODUCT MODAL (IN ADMIN)
+       ======================================================== -->
+  <div id="admin-product-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width:760px;">
+      <button class="modal-close-btn" onclick="window.genBoldAdmin.closeProductModal()">✕</button>
+      <div style="padding:1.75rem 2rem;border-bottom:1px solid #e2e8f0;">
+        <h3 id="prod-modal-title" style="font-weight:800;">Add / Edit Product</h3>
+      </div>
+      
+      <form id="admin-product-form" style="padding:1.75rem 2rem;">
+        <input type="hidden" id="prod-form-id">
+        
+        <div class="checkout-form-grid">
+          <!-- Name -->
+          <div class="form-group-full">
+            <label class="form-label">Product Title / Name *</label>
+            <input type="text" id="prod-form-name" class="form-control" placeholder="e.g. Brushless 4WD RC Monster Truck 60 km/h" required>
+          </div>
+
+          <!-- Category Tree Selection -->
+          <div>
+            <label class="form-label">Category Tree *</label>
+            <select id="prod-form-category" class="form-control" required></select>
+          </div>
+          <div>
+            <label class="form-label">Subcategory *</label>
+            <select id="prod-form-subcategory" class="form-control"></select>
+          </div>
+
+          <!-- MRP & Selling Price with Auto-calculated discount -->
+          <div>
+            <label class="form-label">MRP (Original Price ₹ INR) *</label>
+            <input type="number" id="prod-form-mrp" class="form-control" placeholder="e.g. 4999" required>
+          </div>
+          <div>
+            <label class="form-label">Selling Price (Discounted ₹ INR) *</label>
+            <input type="number" id="prod-form-price" class="form-control" placeholder="e.g. 2999" required>
+          </div>
+
+          <!-- Live Auto Discount Preview -->
+          <div class="form-group-full">
+            <div class="discount-preview-callout">
+              <strong>Discount Preview:</strong>
+              <div id="prod-form-discount-preview">Enter MRP and Selling Price</div>
+            </div>
+          </div>
+
+          <!-- Gender Suitability -->
+          <div>
+            <label class="form-label">Gender Suitability *</label>
+            <select id="prod-form-gender" class="form-control">
+              <option value="Unisex">Unisex</option>
+              <option value="Men">Men</option>
+              <option value="Women">Women</option>
+              <option value="Couples">Couples</option>
+            </select>
+          </div>
+
+          <!-- Badge tag -->
+          <div>
+            <label class="form-label">Badge Tag (e.g. -35% OFF, Top Seller)</label>
+            <input type="text" id="prod-form-badge" class="form-control" placeholder="Auto calculated if left blank">
+          </div>
+
+          <!-- Sizes / Normal Size -->
+          <div>
+            <label class="form-label">Size Options (Comma separated) *</label>
+            <input type="text" id="prod-form-sizes" class="form-control" placeholder="e.g. Standard, Compact, Pro OR S, M, L, XL" value="Standard">
+          </div>
+
+          <!-- Colours -->
+          <div>
+            <label class="form-label">Colour Options (Comma separated) *</label>
+            <input type="text" id="prod-form-colors" class="form-control" placeholder="e.g. Midnight Black, Vibrant Orange" value="Midnight Black, Vibrant Orange">
+          </div>
+
+          <!-- Stock Count -->
+          <div>
+            <label class="form-label">Initial Stock Count</label>
+            <input type="number" id="prod-form-stock-count" class="form-control" value="25">
+          </div>
+
+          <!-- In Stock Checkbox -->
+          <div class="d-flex align-center gap-2 mt-4">
+            <input type="checkbox" id="prod-form-in-stock" checked style="width:18px;height:18px;">
+            <label for="prod-form-in-stock" class="font-bold text-sm">Product In Stock & Available for COD</label>
+          </div>
+
+          <!-- Multiple Product Images & Multi-Angle Gallery Manager -->
+          <div class="form-group-full">
+            <div class="d-flex justify-between align-center mb-1">
+              <label class="form-label" style="margin-bottom:0;font-size:0.875rem;">
+                📷 Product Images & Multi-Angle Gallery *
+              </label>
+              <button type="button" class="btn btn-sm btn-outline text-primary font-bold" onclick="window.genBoldAdmin.addGalleryImageRow()">
+                + Add Another Image URL
+              </button>
+            </div>
+            <p class="text-xs text-muted mb-2">
+              The first image is the <strong>Primary / Cover</strong> image displayed in catalog cards. Additional images will automatically appear as clickable multi-angle thumbnails in the full-screen product view.
+            </p>
+            
+            <!-- Dynamic Image Input Rows Container -->
+            <div id="admin-gallery-inputs-container" class="d-flex flex-column gap-2 mb-2">
+              <!-- Dynamically populated rows -->
+            </div>
+
+            <!-- Live Gallery Preview Strip -->
+            <div class="d-flex align-center gap-2 mt-2 pt-2 border-t">
+              <span class="text-xs text-muted font-bold">All Gallery Images:</span>
+              <div id="admin-gallery-preview-strip" class="d-flex gap-2 flex-wrap"></div>
+            </div>
+          </div>
+
+          <!-- Featured / Flash Sale checkboxes -->
+          <div class="form-group-full d-flex gap-4">
+            <label class="d-flex align-center gap-2">
+              <input type="checkbox" id="prod-form-featured">
+              <span class="text-sm">Feature on Homepage</span>
+            </label>
+            <label class="d-flex align-center gap-2">
+              <input type="checkbox" id="prod-form-flash">
+              <span class="text-sm">Include in Flash Sale</span>
+            </label>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group-full">
+            <label class="form-label">Product Description</label>
+            <textarea id="prod-form-desc" class="form-control" rows="3" placeholder="Enter high converting product copy..."></textarea>
+          </div>
+
+          <!-- Submit Buttons -->
+          <div class="form-group-full d-flex justify-between mt-3">
+            <button type="button" class="btn btn-outline" onclick="window.genBoldAdmin.closeProductModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Product</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 4: FULL-SCREEN PRODUCT WINDOW WITH EXTENDED DETAILS
+       ======================================================== -->
+  <div id="quickview-modal" class="modal-overlay">
+    <div class="fullscreen-product-container">
+      
+      <!-- Sticky Top Navigation Bar -->
+      <div class="pdp-sticky-topbar">
+        <div class="d-flex align-center gap-3">
+          <button id="close-quickview-modal" class="pdp-back-btn" aria-label="Back to store">
+            ← Back to Store
+          </button>
+          <div class="pdp-breadcrumbs">
+            <a href="#" onclick="window.genBoldApp.closeProductModal();">Home</a>
+            <span>/</span>
+            <span id="pdp-crumb-cat">Category</span>
+            <span>/</span>
+            <span id="pdp-crumb-title" class="text-white font-semibold">Product</span>
+          </div>
+        </div>
+
+        <div class="pdp-topbar-actions">
+          <span class="badge badge-success">✓ 100% Discreet COD</span>
+          <button class="pdp-top-action-btn" onclick="window.showToast('Product link copied to clipboard!', 'info')">
+            🔗 Share
+          </button>
+          <button class="pdp-top-action-btn" onclick="window.genBoldApp.openCartDrawer();">
+            🛒 View Cart (<span class="header-cart-count">0</span>)
+          </button>
+          <button class="pdp-close-btn" onclick="window.genBoldApp.closeProductModal()" title="Close">✕</button>
+        </div>
+      </div>
+
+      <!-- Main Product Content Wrapper -->
+      <div class="pdp-content-wrapper">
+        <div class="pdp-hero-grid">
+          
+          <!-- Left Gallery Column -->
+          <div class="pdp-gallery-column">
+            <!-- Main Hero Image -->
+            <div class="pdp-main-image-wrap">
+              <div class="pdp-badges-floating">
+                <span id="pdp-float-discount" class="prod-discount-badge">-30% OFF</span>
+                <span class="prod-flash-badge">⚡ FLASH DEAL</span>
+                <span class="badge badge-info">100% Genuine Certified</span>
+              </div>
+              <img id="modal-prod-img" src="" alt="Product Showcase">
+            </div>
+
+            <!-- Multi-angle Thumbnails Strip -->
+            <div id="pdp-thumbnails-strip" class="pdp-thumbnails-strip">
+              <!-- Dynamically populated thumbnails -->
+            </div>
+
+            <!-- Discreet Packaging Graphic Banner -->
+            <div class="pdp-discreet-banner">
+              <div class="pdp-box-graphic">📦</div>
+              <div class="pdp-discreet-info">
+                <h5>100% Discreet & Secret Packaging Guarantee</h5>
+                <p>This item is shipped in a neutral, unbranded brown corrugated box with zero logos or product descriptions on the shipping label. Your privacy is 100% guaranteed from dispatch to doorstep.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Details Column -->
+          <div class="pdp-info-column">
+            
+            <div class="pdp-category-tag">
+              <span id="pdp-cat-badge">Category</span>
+              <span>•</span>
+              <span id="pdp-subcat-badge">Subcategory</span>
+            </div>
+
+            <h1 id="modal-prod-title" class="pdp-title">Product Title</h1>
+
+            <!-- Ratings & Reviews Row -->
+            <div class="pdp-rating-row">
+              <span class="stars" style="font-size:1rem;color:#f59e0b;">⭐⭐⭐⭐⭐</span>
+              <span id="modal-prod-rating" class="font-bold text-base">4.9</span>
+              <span id="modal-prod-reviews" class="text-sm text-muted">(142 verified customer reviews)</span>
+              <span class="pdp-verified-badge">✔ Verified Buyers</span>
+              <span class="badge badge-neutral" id="modal-prod-gender">Unisex</span>
+            </div>
+
+            <!-- Price Display Box -->
+            <div class="pdp-price-box">
+              <div class="pdp-price-row">
+                <span id="modal-prod-price" class="pdp-selling-price">₹0</span>
+                <span id="modal-prod-mrp" class="pdp-mrp-price">₹0</span>
+                <span id="modal-prod-discount" class="badge badge-discount">-0% OFF</span>
+              </div>
+              <div id="modal-prod-savings" class="pdp-savings-callout">You Save ₹0</div>
+              <div class="pdp-tax-note">
+                Inclusive of all taxes • <strong>Cash on Delivery (COD) Available</strong> • Free Shipping on orders ₹299+
+              </div>
+            </div>
+
+            <!-- Realtime Stock Alert -->
+            <div id="pdp-stock-alert" class="pdp-stock-alert">
+              <span class="stock-pulse-dot"></span>
+              <span id="pdp-stock-status-text">In Stock — Ready for Same-Day COD Dispatch (Only 14 left)</span>
+            </div>
+
+            <!-- Short Story -->
+            <p id="modal-prod-desc" class="text-secondary text-sm mb-4" style="line-height:1.6;"></p>
+
+            <!-- Variants Selection -->
+            <div class="pdp-variant-section">
+              <!-- Size Options -->
+              <div>
+                <div class="pdp-variant-title">
+                  <span>Select Size / Variant:</span>
+                  <button type="button" class="pdp-size-guide-btn" onclick="alert('Standard sizing applies. For toys and tech accessories, standard ergonomic dimensions are engineered to fit universal preferences.')">
+                    📏 Sizing & Compatibility Guide
+                  </button>
+                </div>
+                <div id="modal-size-options" class="variant-pill-list"></div>
+              </div>
+
+              <!-- Colour Options -->
+              <div>
+                <div class="pdp-variant-title">
+                  <span>Available Colours / Finishes:</span>
+                  <span id="pdp-selected-color-name" class="text-xs text-primary font-bold">Standard</span>
+                </div>
+                <div id="modal-color-options" class="color-swatch-list"></div>
+              </div>
+            </div>
+
+            <!-- Quantity & Call To Action Buttons -->
+            <div class="pdp-actions-box">
+              <div class="pdp-qty-stepper">
+                <button type="button" onclick="const q = document.getElementById('modal-qty-input'); q.value = Math.max(1, Number(q.value) - 1); window.genBoldApp.updateModalTotalPrice();">-</button>
+                <input type="number" id="modal-qty-input" value="1" min="1" max="99" onchange="window.genBoldApp.updateModalTotalPrice();">
+                <button type="button" onclick="const q = document.getElementById('modal-qty-input'); q.value = Number(q.value) + 1; window.genBoldApp.updateModalTotalPrice();">+</button>
+              </div>
+              <button class="btn-pdp-cart" onclick="window.genBoldApp.addModalProductToCart(false)">
+                🛒 Add to Cart
+              </button>
+              <button class="btn-pdp-buy-now" onclick="window.genBoldApp.addModalProductToCart(true)">
+                ⚡ Buy Now with COD
+              </button>
+            </div>
+
+            <!-- Live Pincode Delivery Estimator -->
+            <div class="pdp-pincode-card">
+              <h5>📍 Check Delivery Timeline & COD Availability:</h5>
+              <div class="pdp-pincode-input-row">
+                <input type="text" id="pdp-pincode-input" class="pdp-pincode-input" placeholder="Enter 6-digit Pincode" maxlength="6">
+                <button type="button" class="btn btn-sm btn-secondary" onclick="window.genBoldApp.checkPdpPincode()">Check</button>
+              </div>
+              <div id="pdp-pincode-result" class="pdp-pincode-result">
+                <span class="text-muted">Enter your area pincode to see express COD delivery estimates.</span>
+              </div>
+            </div>
+
+            <!-- 4 Reassurances Grid -->
+            <div class="pdp-reassurances-grid">
+              <div class="pdp-reassurance-item">
+                <span class="icon">🚚</span>
+                <div class="text">
+                  <strong>Free COD on ₹299+</strong>
+                  <small>No advance payment required</small>
+                </div>
+              </div>
+              <div class="pdp-reassurance-item">
+                <span class="icon">🔒</span>
+                <div class="text">
+                  <strong>100% Discreet Packaging</strong>
+                  <small>Zero markings or product names</small>
+                </div>
+              </div>
+              <div class="pdp-reassurance-item">
+                <span class="icon">🔄</span>
+                <div class="text">
+                  <strong>7-Day Replacement</strong>
+                  <small>Hassle-free doorstep pickup</small>
+                </div>
+              </div>
+              <div class="pdp-reassurance-item">
+                <span class="icon">🛡️</span>
+                <div class="text">
+                  <strong>1-Year Warranty</strong>
+                  <small>Genuine certified quality</small>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Extended Detail Tabs Section -->
+        <div class="pdp-tabs-section">
+          <div class="pdp-tabs-nav">
+            <button class="pdp-tab-btn active" onclick="window.genBoldApp.switchPdpTab('desc', this)">
+              📖 Description & Highlights
+            </button>
+            <button class="pdp-tab-btn" onclick="window.genBoldApp.switchPdpTab('specs', this)">
+              ⚙️ Technical Specifications
+            </button>
+            <button class="pdp-tab-btn" onclick="window.genBoldApp.switchPdpTab('care', this)">
+              💡 How to Use & Care Guidelines
+            </button>
+            <button class="pdp-tab-btn" onclick="window.genBoldApp.switchPdpTab('privacy', this)">
+              🔒 Discreet Packaging Promise
+            </button>
+            <button class="pdp-tab-btn" onclick="window.genBoldApp.switchPdpTab('reviews', this)">
+              ⭐ Customer Reviews (140+)
+            </button>
+          </div>
+
+          <!-- Tab 1: Description -->
+          <div id="pdp-pane-desc" class="pdp-tab-content-pane active">
+            <div style="max-width:900px;line-height:1.8;">
+              <h3 class="font-bold mb-3">Engineered for Peak Pleasure, Precision & Bold Lifestyles</h3>
+              <p id="pdp-full-desc-text" class="text-secondary mb-4"></p>
+              
+              <h4 class="font-bold mb-2">Key Highlights & What Sets It Apart:</h4>
+              <ul style="padding-left:1.5rem;display:flex;flex-direction:column;gap:0.5rem;color:#334155;">
+                <li><strong>Medical-Grade & Skin-Safe Materials:</strong> Hypoallergenic, BPA-free, body-safe components crafted to the highest international safety benchmarks.</li>
+                <li><strong>Whisper-Quiet Advanced Motor:</strong> High performance engineered acoustic dampening ensures ultra-discrete operation (&lt;40dB).</li>
+                <li><strong>Ergonomic Contour Architecture:</strong> Thoughtfully sculpted to maximize tactile comfort, intuitive control, and ergonomic handling.</li>
+                <li><strong>Universal Fast Magnetic Recharging:</strong> Built-in high-density lithium polymer battery with over-charge safety circuitry.</li>
+                <li><strong>All-Weather / Water Resistant Protection:</strong> Built to withstand everyday use, washing, and deep immersion with zero moisture ingress.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tab 2: Technical Specifications -->
+          <div id="pdp-pane-specs" class="pdp-tab-content-pane">
+            <table id="pdp-specs-table" class="pdp-specs-table">
+              <!-- Populated dynamically -->
+            </table>
+          </div>
+
+          <!-- Tab 3: How to Use & Care -->
+          <div id="pdp-pane-care" class="pdp-tab-content-pane">
+            <div style="max-width:900px;line-height:1.7;">
+              <h4 class="font-bold mb-3">Guidelines for Optimum Experience & Longevity:</h4>
+              <div class="d-flex flex-column gap-3">
+                <div class="pdp-reassurance-item" style="background:#ffffff;">
+                  <span style="font-size:1.8rem;">1️⃣</span>
+                  <div>
+                    <strong>Initial Charge & Setup</strong>
+                    <p class="text-xs text-muted">Fully charge before initial use using the included magnetic USB cable. LED indicator will turn solid when complete.</p>
+                  </div>
+                </div>
+                <div class="pdp-reassurance-item" style="background:#ffffff;">
+                  <span style="font-size:1.8rem;">2️⃣</span>
+                  <div>
+                    <strong>Lubrication & Pairings</strong>
+                    <p class="text-xs text-muted">Always pair with high quality water-based lubricants (like PureGlide). Avoid silicone lubricants on silicone bodies to preserve the silky coating.</p>
+                  </div>
+                </div>
+                <div class="pdp-reassurance-item" style="background:#ffffff;">
+                  <span style="font-size:1.8rem;">3️⃣</span>
+                  <div>
+                    <strong>Cleaning & Storage</strong>
+                    <p class="text-xs text-muted">Wash gently with mild unscented antibacterial soap and lukewarm water. Pat dry with a lint-free towel and store in a cool, dust-free place away from direct sunlight.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 4: Discreet Packaging Promise -->
+          <div id="pdp-pane-privacy" class="pdp-tab-content-pane">
+            <div style="max-width:900px;line-height:1.8;">
+              <h4 class="font-bold mb-2">Our 100% Privacy & Discreet Shipping Protocol</h4>
+              <p class="text-secondary mb-3">We recognize how vital privacy is when ordering personal wellness or hobby gear. Here is how your order is prepared and handed over to you:</p>
+              <ul style="padding-left:1.5rem;display:flex;flex-direction:column;gap:0.6rem;color:#334155;">
+                <li><strong>Plain Brown Corrugated Box:</strong> Shipped in an unmarked, thick brown cardboard carton with no external logos, brand names, or pictures.</li>
+                <li><strong>Discreet Courier Waybill:</strong> The courier shipping bill identifies the package simply as <em>"Lifestyle Goods / Electronics"</em>. No product titles or sensitive keywords appear anywhere.</li>
+                <li><strong>Discreet Billing Descriptor:</strong> Your COD receipt or bank statement mentions our corporate entity <em>"GB Lifestyle Retail"</em> with zero mention of specific items.</li>
+                <li><strong>Doorstep Handover:</strong> The courier delivery partner will deliver the sealed box directly into your hands and accept Cash or UPI on the spot.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tab 5: Customer Reviews -->
+          <div id="pdp-pane-reviews" class="pdp-tab-content-pane">
+            <div class="pdp-reviews-overview">
+              <div class="pdp-overall-score">
+                <div class="pdp-score-num">4.9</div>
+                <div class="stars mb-1">⭐⭐⭐⭐⭐</div>
+                <div class="text-xs text-muted">Based on 142 verified orders</div>
+                <div class="text-xs text-success font-bold mt-2">98% Recommendation Rate</div>
+              </div>
+              <div>
+                <h5 class="font-bold mb-2">Rating Distribution:</h5>
+                <div class="d-flex flex-column gap-2 text-xs">
+                  <div class="d-flex align-center gap-2">
+                    <span>5 Star</span>
+                    <div style="flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;"><div style="width:88%;height:100%;background:#f59e0b;"></div></div>
+                    <span>88%</span>
+                  </div>
+                  <div class="d-flex align-center gap-2">
+                    <span>4 Star</span>
+                    <div style="flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;"><div style="width:9%;height:100%;background:#f59e0b;"></div></div>
+                    <span>9%</span>
+                  </div>
+                  <div class="d-flex align-center gap-2">
+                    <span>3 Star</span>
+                    <div style="flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;"><div style="width:3%;height:100%;background:#f59e0b;"></div></div>
+                    <span>3%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sample Reviews -->
+            <div class="pdp-user-reviews-list">
+              <div class="pdp-review-card">
+                <div class="d-flex justify-between align-center mb-1">
+                  <strong>Arjun K.</strong>
+                  <span class="text-xs text-muted">Verified COD Purchase • 3 days ago</span>
+                </div>
+                <div class="stars mb-2" style="font-size:0.8rem;">⭐⭐⭐⭐⭐</div>
+                <p class="text-sm text-secondary">"Incredible quality! The packaging was totally plain and arrived in 2 days. The Cash on Delivery process was smooth and the product feels very premium. Highly recommend Gen Bold!"</p>
+              </div>
+              <div class="pdp-review-card">
+                <div class="d-flex justify-between align-center mb-1">
+                  <strong>Neha S.</strong>
+                  <span class="text-xs text-muted">Verified COD Purchase • 1 week ago</span>
+                </div>
+                <div class="stars mb-2" style="font-size:0.8rem;">⭐⭐⭐⭐⭐</div>
+                <p class="text-sm text-secondary">"Loved the discreet packing, no one at home could guess what was inside. Whisper quiet and super soft finish. Best purchase this year!"</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Related Products Grid -->
+        <div class="pdp-related-section">
+          <h3 class="section-title mb-4">You May Also Like</h3>
+          <div id="pdp-related-products-grid" class="products-grid">
+            <!-- Dynamically populated related items -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 5: FULL-SCREEN CART SUITE (WITH COD RULES)
+       ======================================================== -->
+  <div id="cart-drawer-overlay" class="cart-drawer-overlay"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    
+    <!-- Cart Sticky Header -->
+    <div class="cart-drawer-header">
+      <div class="d-flex align-center gap-3">
+        <button id="close-cart-drawer" class="cart-back-btn">
+          ← Continue Shopping
+        </button>
+        <h3>
+          🛒 Your Shopping Bag 
+          <span class="badge badge-neutral header-cart-count" style="background:#ffffff;color:#0f172a;font-size:0.9rem;">0</span>
+        </h3>
+      </div>
+      <div class="d-flex align-center gap-3">
+        <span class="badge badge-success">✓ 100% Cash on Delivery (COD)</span>
+        <button class="cart-close-btn" onclick="window.genBoldApp.closeCartDrawer();" title="Close Cart">✕</button>
+      </div>
+    </div>
+
+    <!-- Fullscreen Cart Workspace Container -->
+    <div class="cart-fullscreen-container">
+      <div class="cart-fullscreen-grid">
+        
+        <!-- Left Main Shopping Bag Column -->
+        <div class="cart-items-column">
+          
+          <!-- Free COD Progress Bar (Min Order ₹299) -->
+          <div class="cod-progress-box">
+            <div id="cart-free-cod-notice" class="cod-progress-text">
+              Add <strong>₹299</strong> to get <strong>FREE COD Delivery</strong>! (Otherwise ₹49 applied)
+            </div>
+            <div class="cod-progress-bar-wrap">
+              <div id="cart-free-cod-progress-bar" class="cod-progress-bar-fill"></div>
+            </div>
+          </div>
+
+          <!-- Items Table Card -->
+          <div class="cart-card">
+            <div class="cart-card-header">
+              <h4>Selected Items</h4>
+              <button class="btn btn-sm btn-outline text-danger" onclick="if(confirm('Are you sure you want to empty your cart?')) window.genBoldCart.clear();">
+                🗑️ Clear Bag
+              </button>
+            </div>
+            <!-- Dynamic Cart Items -->
+            <div id="cart-drawer-items" class="cart-drawer-body"></div>
+          </div>
+
+          <!-- Discreet Packaging Assurance Strip -->
+          <div class="pdp-discreet-banner" style="margin-top:0;">
+            <div class="pdp-box-graphic">📦</div>
+            <div class="pdp-discreet-info">
+              <h5>100% Discreet Packaging Guaranteed</h5>
+              <p>Every shipment is delivered in plain unbranded protective packaging. No logos or product details on the outside shipping label.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Sticky Summary Column -->
+        <div class="cart-summary-column">
+          <div class="cart-summary-card">
+            <h4>Order Summary</h4>
+
+            <!-- Coupon Code Widget -->
+            <div class="coupon-box-wrap">
+              <label class="form-label text-xs">Have a Promo Coupon?</label>
+              <div class="coupon-input-group">
+                <input type="text" id="cart-coupon-input" class="coupon-input" placeholder="e.g. GENBOLD10">
+                <button id="cart-apply-coupon-btn" class="btn btn-sm btn-secondary">Apply</button>
+              </div>
+              <div class="coupon-chips-list">
+                <span class="coupon-chip" onclick="document.getElementById('cart-coupon-input').value='GENBOLD10';">🏷️ GENBOLD10 (10% OFF)</span>
+                <span class="coupon-chip" onclick="document.getElementById('cart-coupon-input').value='BOLD50';">🏷️ BOLD50 (₹50 OFF)</span>
+                <span class="coupon-chip" onclick="document.getElementById('cart-coupon-input').value='WELCOME20';">🏷️ WELCOME20</span>
+              </div>
+            </div>
+
+            <hr style="border:none;border-top:1px solid #e2e8f0;margin:1.25rem 0;">
+
+            <!-- Price Breakdown -->
+            <div class="cart-price-summary">
+              <div class="summary-row">
+                <span>Cart Subtotal</span>
+                <strong id="cart-subtotal-val">₹0</strong>
+              </div>
+              <div id="cart-coupon-discount-row" class="summary-row text-success" style="display:none;">
+                <span>Coupon Savings</span>
+                <strong id="cart-coupon-discount-val">-₹0</strong>
+              </div>
+              <div class="summary-row">
+                <span>
+                  COD Delivery Charge
+                  <small class="text-xs text-muted d-block">(Free on ₹299+)</small>
+                </span>
+                <strong id="cart-cod-fee-val">₹0</strong>
+              </div>
+              <div class="summary-row total-row">
+                <span>Total Payable on Delivery:</span>
+                <span id="cart-final-total-val" class="total-amount">₹0</span>
+              </div>
+            </div>
+
+            <!-- Proceed to Checkout Button -->
+            <button id="proceed-checkout-btn" class="btn btn-primary btn-block btn-lg" style="margin-top:1.5rem;">
+              Proceed to COD Checkout →
+            </button>
+
+            <!-- Reassurance Trust Points -->
+            <div class="d-flex flex-column gap-2 text-xs text-muted mt-3" style="border-top:1px dashed #e2e8f0;padding-top:1rem;">
+              <div class="d-flex align-center gap-2">
+                <span>💵</span>
+                <span><strong>Cash on Delivery (COD) Only:</strong> Pay cash/UPI when courier arrives.</span>
+              </div>
+              <div class="d-flex align-center gap-2">
+                <span>🔒</span>
+                <span><strong>100% Privacy:</strong> Discreet outer carton with zero logos.</span>
+              </div>
+              <div class="d-flex align-center gap-2">
+                <span>📞</span>
+                <span><strong>Support:</strong> WhatsApp +91 (800) 123-4567 available 24/7.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ========================================================
+       MODAL 5: COD CHECKOUT MODAL
+       ======================================================== -->
+  <div id="checkout-modal" class="modal-overlay">
+    <div class="checkout-modal-container">
+      <div class="checkout-header">
+        <h3 class="font-bold">⚡ Cash on Delivery (COD) Checkout</h3>
+        <button id="close-checkout-modal" class="modal-close-btn" style="position:static;background:rgba(255,255,255,0.1);color:#fff;">✕</button>
+      </div>
+      
+      <div class="checkout-body">
+        
+        <!-- COD Payment Method Notice -->
+        <div class="cod-only-payment-card">
+          <div class="cod-radio-dot"></div>
+          <div class="cod-payment-info">
+            <h4>Cash on Delivery (COD) - 100% Safe</h4>
+            <p>Pay cash or via UPI QR code directly to the courier agent when your package arrives at your doorstep. Zero advance payment needed!</p>
+          </div>
+        </div>
+
+        <!-- Customer Address Form -->
+        <form id="cod-checkout-form" class="checkout-form-grid">
+          <div>
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="checkout-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
+          </div>
+          <div>
+            <label class="form-label">10-Digit Mobile Number (For COD Delivery OTP) *</label>
+            <input type="tel" id="checkout-phone" class="form-control" placeholder="e.g. 9876543210" pattern="[0-9]{10}" required>
+          </div>
+          <div class="form-group-full">
+            <label class="form-label">Email Address (Optional for order tracking)</label>
+            <input type="email" id="checkout-email" class="form-control" placeholder="e.g. rahul@example.com">
+          </div>
+          <div class="form-group-full">
+            <label class="form-label">Complete Street Address (Flat / House / Area) *</label>
+            <input type="text" id="checkout-address" class="form-control" placeholder="House number, Street name, Landmark" required>
+          </div>
+          <div>
+            <label class="form-label">City *</label>
+            <input type="text" id="checkout-city" class="form-control" placeholder="e.g. Mumbai" required>
+          </div>
+          <div>
+            <label class="form-label">State *</label>
+            <input type="text" id="checkout-state" class="form-control" placeholder="e.g. Maharashtra" required>
+          </div>
+          <div>
+            <label class="form-label">Pincode *</label>
+            <input type="text" id="checkout-pincode" class="form-control" placeholder="e.g. 400001" pattern="[0-9]{6}" required>
+          </div>
+          <div>
+            <label class="form-label">Delivery Notes / Discreet Request</label>
+            <input type="text" id="checkout-notes" class="form-control" placeholder="e.g. Deliver quietly, call before arriving" value="Discreet packaging requested">
+          </div>
+
+          <!-- Order Summary in Checkout -->
+          <div class="form-group-full mt-2" style="background:#f8fafc;padding:1rem;border-radius:8px;border:1px solid #e2e8f0;">
+            <h5 class="font-bold mb-2">Order Review:</h5>
+            <div id="checkout-order-items" class="mb-2"></div>
+            <div class="d-flex justify-between text-sm py-1">
+              <span>Subtotal:</span>
+              <span id="checkout-subtotal">₹0</span>
+            </div>
+            <div class="d-flex justify-between text-sm py-1">
+              <span>COD Delivery Fee:</span>
+              <span id="checkout-cod-fee">₹0</span>
+            </div>
+            <div class="d-flex justify-between font-bold text-base border-t pt-2 mt-1">
+              <span>Amount Due on Delivery:</span>
+              <span id="checkout-total" class="text-primary font-bold">₹0</span>
+            </div>
+          </div>
+
+          <!-- Submit Order Button -->
+          <div class="form-group-full mt-3">
+            <button type="submit" class="btn btn-primary btn-block btn-lg">
+              Confirm & Place COD Order 🚚
+            </button>
+            <div class="text-center text-xs text-muted mt-2">
+              🔒 100% Discreet shipment. Neutral exterior box with zero indication of contents.
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 6: ORDER PLACED SUCCESS
+       ======================================================== -->
+  <div id="order-success-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width:540px;">
+      <div class="order-success-card">
+        <div class="success-check-icon">✓</div>
+        <h2 style="font-weight:900;font-family:var(--font-heading);">COD Order Confirmed!</h2>
+        <p class="text-sm text-secondary">Thank you! Your Cash on Delivery order has been successfully placed with Gen Bold.</p>
+        
+        <div id="success-order-id" class="success-order-id-badge">GB-000000</div>
+
+        <div class="success-details-box">
+          <div class="d-flex justify-between py-1 border-b">
+            <span class="text-muted">Recipient Name:</span>
+            <strong id="success-customer-name">-</strong>
+          </div>
+          <div class="d-flex justify-between py-1 border-b">
+            <span class="text-muted">Contact Phone:</span>
+            <strong id="success-customer-phone">-</strong>
+          </div>
+          <div class="d-flex justify-between py-1 border-b">
+            <span class="text-muted">Delivery Address:</span>
+            <span id="success-customer-address" class="text-right text-xs" style="max-width:240px;">-</span>
+          </div>
+          <div class="d-flex justify-between py-1 border-b">
+            <span class="text-muted">Payment Mode:</span>
+            <span class="badge badge-success">Cash on Delivery (COD)</span>
+          </div>
+          <div class="d-flex justify-between py-1 pt-2 font-bold text-base">
+            <span>Cash to Pay Courier:</span>
+            <span id="success-cod-amount" class="text-primary">₹0</span>
+          </div>
+        </div>
+
+        <div class="alert alert-info text-xs mb-4" style="background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;padding:0.75rem;border-radius:6px;">
+          📦 <strong>Discreet Delivery Guarantee:</strong> Your parcel will be shipped in a completely plain box without any product name or branding mentioned on the shipping label.
+        </div>
+
+        <button class="btn btn-primary btn-block" onclick="window.genBoldApp.closeSuccessModal()">
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 7: TRACK ORDER
+       ======================================================== -->
+  <div id="track-order-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width:480px;">
+      <button id="close-track-modal" class="modal-close-btn" aria-label="Close">✕</button>
+      <div style="padding:2rem;">
+        <h3 class="font-bold mb-1">📍 Track Your COD Order</h3>
+        <p class="text-xs text-muted mb-3">Enter your 8-character Gen Bold Order ID (e.g. GB-123456).</p>
+        
+        <form id="track-order-form" class="d-flex gap-2">
+          <input type="text" id="track-order-input" class="form-control" placeholder="e.g. GB-108200" required>
+          <button type="submit" class="btn btn-primary">Track</button>
+        </form>
+
+        <div id="track-order-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 8: WISHLIST DRAWER / MODAL
+       ======================================================== -->
+  <div id="wishlist-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width:600px;">
+      <button id="close-wishlist-modal" class="modal-close-btn" aria-label="Close">✕</button>
+      <div style="padding:1.75rem 2rem;border-bottom:1px solid #e2e8f0;">
+        <h3 class="font-bold">❤️ My Saved Wishlist</h3>
+      </div>
+      <div id="wishlist-items-container" style="padding:1.5rem 2rem;max-height:65vh;overflow-y:auto;">
+        <!-- Populated by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ========================================================
+       JAVASCRIPT ARCHITECTURE
+       ======================================================== -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/app.js"></script>
+
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // 1. Paste your Firebase configuration credentials here
+  const firebaseConfig = {
+    apiKey: "AIzaSyC_fUtSCurZCuo0SMI0NpG5teBLRQe8G_8",
+    authDomain: "genbold-4b3ff.firebaseapp.com",
+    projectId: "genbold-4b3ff",
+    storageBucket: "genbold-4b3ff.firebasestorage.app",
+    messagingSenderId: "756607285731",
+    appId: "G-VEX2P85C2P"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const provider = new GoogleAuthProvider();
+
+  // 2. Use Redirect instead of Popup
+  window.loginWithGoogle = function() {
+      signInWithRedirect(auth, provider);
+  };
+
+  // 3. Handle the incoming data after Google redirects back to your page
+  getRedirectResult(auth)
+    .async = async (result) => {
+      if (result) {
+        const user = result.user;
+        const userRef = doc(db, "users", user.uid);
+        await setDoc(userRef, {
+            uid: user.uid,
+            name: user.displayName,
+            email: user.email,
+            photo: user.photoURL,
+            lastLogin: new Date().toISOString()
+        }, { merge: true });
+        console.log("User saved:", user.email);
+      }
+    }.catch((error) => {
+        console.error("Redirect Login Error:", error.code, error.message);
+    });
+
+  // 4. Update UI based on auth state
+  onAuthStateChanged(auth, (user) => {
+      const loginBtn = document.getElementById("login-btn");
+      const userProfile = document.getElementById("user-profile");
+      const userName = document.getElementById("user-name");
+      const userAvatar = document.getElementById("user-avatar");
+      
+      if (user) {
+          if(loginBtn) loginBtn.style.display = "none";
+          if(userProfile) {
+              userProfile.style.display = "inline-block";
+              userName.innerText = user.displayName;
+              userAvatar.src = user.photoURL || "";
+          }
+      } else {
+          if(loginBtn) loginBtn.style.display = "inline-block";
+          if(userProfile) userProfile.style.display = "none";
+      }
+  });
+
+  window.logout = function() {
+      signOut(auth);
+  };
+</script>
+
+</body>
+</html>
